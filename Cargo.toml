@@ -2,11 +2,15 @@
 name = "human-time"
 version = "0.1.0"
 edition = "2021"
+license = "Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/manlge/human-time"
+description = "This is a library for human readable elapsed time string"
+keywords = ["human", "time", "elapsed"]
 
 [lib]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-# human-time-macros ={ version="0.1.0", path="../human-time-macros"}
-human-time-macros ={ version="0.1.0", git="https://github.com/manlge/human-time-macros"}
+human-time-macros ={ version="0.1.0"}
