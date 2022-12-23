@@ -6,7 +6,7 @@ license = "Apache-2.0"
 readme = "README.md"
 repository = "https://github.com/manlge/human-time"
 description = "This is a library for human readable elapsed time string"
-keywords = ["human", "time", "elapsed"]
+keywords = ["human", "time", "elapsed", "duration"]
 
 [lib]
 

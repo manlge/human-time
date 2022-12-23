@@ -1,4 +1,4 @@
-# Human readable time string
+# Human readable elapsed time string
 
 ## Overview
 
