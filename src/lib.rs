@@ -2,6 +2,28 @@ use std::time::Duration;
 
 pub use human_time_macros::elapsed;
 
+pub trait ToHumanTimeString {
+    fn to_human_time_string(&self) -> String;
+    fn to_human_time_string_with_format<F, F1>(&self, time_fmt: F, res_fmt: F1) -> String
+    where
+        F: Fn(u128, &str) -> String,
+        F1: Fn(String, String) -> String;
+}
+
+impl ToHumanTimeString for Duration {
+    fn to_human_time_string(&self) -> String {
+        crate::human_time(*self)
+    }
+
+    fn to_human_time_string_with_format<F, F1>(&self, time_fmt: F, res_fmt: F1) -> String
+    where
+        F: Fn(u128, &str) -> String,
+        F1: Fn(String, String) -> String,
+    {
+        human_time_with_format(*self, time_fmt, res_fmt)
+    }
+}
+
 pub fn human_time(d: Duration) -> String {
     human_time_with_format(
         d,

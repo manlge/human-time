@@ -1,3 +1,25 @@
+# Human readable time string
+
+## Overview
+
+This is a library for human readable elapsed time string
+
+## Prerequisites
+
+Rust 1.6 or newer
+
+## Usage
+
+Put this in your `Cargo.toml`:
+
+```toml
+[dependencies]
+human-time="0"
+```
+
+## Example
+
+```rust
 use std::{
     thread::{self},
     time::Duration,
@@ -40,5 +62,14 @@ fn main() {
 
 #[human_time::elapsed]
 fn foo() {
-    thread::sleep(Duration::from_millis(1000));
+    thread::sleep(Duration::from_millis(100));
 }
+```
+Output
+```text
+costs 16d,8h,53m,36s
+costs 2h,27m,20s,3ms
+costs 0ms
+costs 2hours, 27minutes, 20seconds, 3ms
+fn foo costs 1s,3ms
+```
