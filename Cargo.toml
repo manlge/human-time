@@ -1,0 +1,12 @@
+[package]
+name = "human-time"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+# human-time-macros ={ version="0.1.0", path="../human-time-macros"}
+human-time-macros ={ version="0.1.0", git="https://github.com/manlge/human-time-macros"}
