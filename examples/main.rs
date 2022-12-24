@@ -31,7 +31,7 @@ fn main() {
                     }
                 )
             },
-            |acc, item| format!("{}, {}", acc, item)
+            |acc, item| format!("{} {}", acc, item)
         )
     );
 

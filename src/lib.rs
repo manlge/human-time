@@ -2,6 +2,14 @@ use std::time::Duration;
 
 pub use human_time_macros::elapsed;
 
+const UNITS: [(&str, u128); 5] = [
+    ("d", 86400000),
+    ("h", 3600000),
+    ("m", 60000),
+    ("s", 1000),
+    ("ms", 1),
+];
+
 pub trait ToHumanTimeString {
     fn to_human_time_string(&self) -> String;
     fn to_human_time_string_with_format<F, F1>(&self, time_fmt: F, res_fmt: F1) -> String
@@ -39,13 +47,7 @@ where
 {
     let mut map: Vec<(u128, &str)> = Vec::new();
     let mut ms = d.as_millis();
-    for (unit, n_ms) in [
-        ("d", 86400000),
-        ("h", 3600000),
-        ("m", 60000),
-        ("s", 1000),
-        ("ms", 1),
-    ] {
+    for (unit, n_ms) in UNITS {
         map.push((ms / n_ms, unit));
         ms %= n_ms;
     }

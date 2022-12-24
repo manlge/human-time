@@ -13,4 +13,4 @@ keywords = ["human", "time", "elapsed", "duration"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-human-time-macros ={ version="0.1.0"}
+human-time-macros ={ version="0"}
