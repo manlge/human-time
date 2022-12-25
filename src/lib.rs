@@ -1,3 +1,5 @@
+#![allow(clippy::unwrap_used)]
+
 use std::time::Duration;
 
 pub use human_time_macros::elapsed;
@@ -59,6 +61,6 @@ where
         .reduce(res_fmt)
     {
         Some(val) => val,
-        None => time_fmt(0, "ms"),
+        None => time_fmt(0, UNITS.last().unwrap().0),
     }
 }
