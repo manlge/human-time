@@ -42,7 +42,11 @@ fn main() {
     foo(1);
 }
 
-#[human_time::elapsed]
+//use log::debug;
+//#[human_time::elapsed(output = "debug")]
+//#[human_time::elapsed(output = "eprintln")]
+// #[human_time::elapsed(output = "println")] //default
+#[human_time::elapsed()]
 fn foo<T>(_x: T)
 where
     T: Display,
@@ -50,7 +54,7 @@ where
     thread::sleep(Duration::from_millis(1000));
 }
 
-#[human_time::elapsed]
+#[human_time::elapsed()]
 async fn bar() {
     thread::sleep(Duration::from_millis(1000));
 }
