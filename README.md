@@ -6,7 +6,7 @@ This is a library for human readable elapsed time string
 
 ## Prerequisites
 
-Rust 1.6 or newer
+Rust 1.58 or newer
 
 ## Usage
 
@@ -17,18 +17,24 @@ Put this in your `Cargo.toml`:
 human-time="0"
 ```
 
-## Example
+## Examples
+
+Convert a duration to a human readable string
 
 ```rust
 use std::{
-    fmt::Display,
-    thread::{self},
+    thread,
     time::{Duration, Instant},
 };
 
 use human_time::ToHumanTimeString;
 
 fn main() {
+    let start = Instant::now();
+    thread::sleep(Duration::from_secs(1));
+    let costs: Duration = start.elapsed();
+    println!("costs {}", costs.to_human_time_string());
+
     println!(
         "costs {}",
         Duration::from_secs(88401 * 2 * 8).to_human_time_string()
@@ -37,10 +43,26 @@ fn main() {
         "costs {}",
         Duration::from_millis(8840003).to_human_time_string()
     );
+}
+```
 
-    let start = Instant::now();
-    thread::sleep(Duration::from_secs(1));
-    println!("costs {}", start.elapsed().to_human_time_string());
+Output
+
+```text
+
+costs 1s,202μs
+costs 16d,8h,53m,36s
+costs 2h,27m,20s,3ms
+```
+
+Convert a duration to a human readable string with format.
+
+```rust
+use std::time::Duration;
+
+use human_time::ToHumanTimeString;
+
+fn main() {
     println!(
         "costs {}",
         Duration::from_millis(8840003).to_human_time_string_with_format(
@@ -60,7 +82,21 @@ fn main() {
             |acc, item| format!("{} {}", acc, item)
         )
     );
+}
+```
 
+Output
+
+```text
+costs 2hours 27minutes 20seconds 3ms
+```
+
+Print function time-consuming with elapsed macro
+
+```rust
+use std::{fmt::Display, thread, time::Duration};
+
+fn main() {
     foo(1);
 }
 
@@ -76,16 +112,14 @@ where
     thread::sleep(Duration::from_millis(1000));
 }
 
-#[human_time::elapsed()]
+#[human_time::elapsed(output = "eprintln")]
 async fn bar() {
     thread::sleep(Duration::from_millis(1000));
 }
 ```
+
 Output
+
 ```text
-costs 16d,8h,53m,36s
-costs 2h,27m,20s,3ms
-costs 1s,4ms,264μs
-costs 2hours 27minutes 20seconds 3ms
-fn foo costs 1s,4ms,985μs
+fn foo costs 1s,2ms,837μs
 ```
